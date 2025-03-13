@@ -1,0 +1,39 @@
+AcademicSystem
+├── src
+│   ├── java
+│   │   ├── model
+│   │   │   ├── AcademicPeriod.java
+│   │   │   ├── AcademicYear.java
+│   │   │   ├── Account.java
+│   │   │   ├── Branch.java
+│   │   │   ├── Class.java
+│   │   │   ├── Classification.java
+│   │   │   ├── Credit.java
+│   │   │   ├── Department.java
+│   │   │   ├── Grades.java
+│   │   │   ├── Roles.java
+│   │   │   ├── Semester.java
+│   │   │   ├── Student.java
+│   │   │   ├── Subject.java
+│   │   │   ├── SubjectTeacher.java
+│   │   │   └── Teacher.java
+│   │   ├── dao
+│   │   │   ├── AccountDAO.java
+│   │   │   ├── GradeDAO.java
+│   │   │   ├── StudentDAO.java
+│   │   │   ├── TeacherDAO.java
+│   │   │   └── DBContext.java
+│   │   └── controller
+│   │       ├── Grade.java
+│   │       ├── StudentController.java
+│   │       └── TeacherController.java
+├── web
+│   ├── WEB-INF
+│   │   └── web.xml
+│   ├── Home.jsp
+│   ├── Login.jsp
+│   ├── Register.jsp
+│   ├── ViewAdmin.jsp
+│   ├── ViewStudent.jsp
+│   ├── ViewTeacher.jsp
+│   └── index.html
