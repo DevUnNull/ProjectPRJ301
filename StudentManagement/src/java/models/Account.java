@@ -7,9 +7,6 @@ public class Account {
     private String email;
     private int role;
 
-    public Account() {
-    }
-
     public Account(int id, String username, String password, String email, int role) {
         this.id = id;
         this.username = username;
@@ -18,7 +15,7 @@ public class Account {
         this.role = role;
     }
 
-    // Getters and Setters
+    // Getter và Setter
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getUsername() { return username; }

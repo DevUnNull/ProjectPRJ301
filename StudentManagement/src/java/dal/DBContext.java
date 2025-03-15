@@ -6,24 +6,19 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author FPT University - PRJ30X
  */
 public class DBContext {
     protected Connection connection;
-    public DBContext()
-    {
+
+    public DBContext() {
         //@Students: You are allowed to edit user, pass, url variables to fit 
         //your system configuration
         //You can also add more methods for Database Interaction tasks. 
         //But we recommend you to do it in another class
-        // For example : StudentDBContext extends DBContext , 
+        // For example : StudentDBContext extends DBContext, 
         //where StudentDBContext is located in dal package, 
         try {
             String user = "sa";
@@ -35,6 +30,23 @@ public class DBContext {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    // Thêm phương thức getConnection để trả về connection
+    public Connection getConnection() {
+        return connection;
+    }
+
+    // Thêm phương thức closeConnection để đóng kết nối
+    public void closeConnection(Connection conn) {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         DBContext a = new DBContext();
         System.out.println(a.connection);

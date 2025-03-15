@@ -4,8 +4,16 @@
         <servlet-name>test</servlet-name>
         <servlet-class>test</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>AdminController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/adminController</url-pattern>
     </servlet-mapping>
 </web-app>
