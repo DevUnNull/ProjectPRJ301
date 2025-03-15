@@ -16,16 +16,16 @@
     </head>
     <body>
         <div class="wrapper">
-        <form action="">
+            <form action="login" method="post">
             <h1>Login</h1>
 
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" placeholder="Email" name="email" required>
                 <i class='bx bx-user-circle'></i>
             </div>
 
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Password" name="password" required>
                 <i class='bx bxs-lock-open'></i>
             </div>
 
@@ -36,9 +36,10 @@
 
             <button type="submit" class="btn">Đăng Nhập</button>
 
-            <div class="register-link">
+<!--            <div class="register-link">
                 <p>Don't have an account? <a href="http://localhost:9999/PROJECT/register">Register</a></p>
-            </div>
+            </div>-->
+            ${mes}
         </form>
     </div>
     </body>
