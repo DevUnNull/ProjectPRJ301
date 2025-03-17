@@ -19,6 +19,7 @@ import java.util.List;
 
 @WebServlet("/AdminController")
 public class AdminController extends HttpServlet {
+
     private StudentDAO studentDAO;
     private TeacherDAO teacherDAO;
     private GradeDAO gradeDAO;
@@ -33,7 +34,7 @@ public class AdminController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         Integer role = (Integer) session.getAttribute("role");
         if (role != null && role == 1) {
             String action = request.getParameter("action");
@@ -66,12 +67,12 @@ public class AdminController extends HttpServlet {
             try {
                 if ("addStudent".equals(action)) {
                     Student student = new Student(
-                        Integer.parseInt(request.getParameter("studentID")),
-                        request.getParameter("studentName"),
-                        request.getParameter("address"),
-                        Long.parseLong(request.getParameter("phone")),
-                        request.getParameter("email"),
-                        Integer.parseInt(request.getParameter("classID"))
+                            Integer.parseInt(request.getParameter("studentID")),
+                            request.getParameter("studentName"),
+                            request.getParameter("address"),
+                            Long.parseLong(request.getParameter("phone")),
+                            request.getParameter("email"),
+                            Integer.parseInt(request.getParameter("classID"))
                     );
                     studentDAO.addStudent(student);
                 } else if ("deleteStudent".equals(action)) {
@@ -79,11 +80,11 @@ public class AdminController extends HttpServlet {
                     studentDAO.deleteStudent(studentID);
                 } else if ("addTeacher".equals(action)) {
                     Teacher teacher = new Teacher(
-                        request.getParameter("teacherID"),
-                        request.getParameter("teacherName"),
-                        request.getParameter("address"),
-                        Long.parseLong(request.getParameter("phone")),
-                        request.getParameter("email")
+                            request.getParameter("teacherID"),
+                            request.getParameter("teacherName"),
+                            request.getParameter("address"),
+                            Long.parseLong(request.getParameter("phone")),
+                            request.getParameter("email")
                     );
                     teacherDAO.addTeacher(teacher);
                 } else if ("deleteTeacher".equals(action)) {
@@ -94,11 +95,11 @@ public class AdminController extends HttpServlet {
                     gradeDAO.deleteGrade(gradeID);
                 } else if ("addAccount".equals(action)) {
                     Account account = new Account(
-                        Integer.parseInt(request.getParameter("id")),
-                        request.getParameter("username"),
-                        request.getParameter("password"),
-                        request.getParameter("email"),
-                        Integer.parseInt(request.getParameter("role"))
+                            Integer.parseInt(request.getParameter("id")),
+                            request.getParameter("username"),
+                            request.getParameter("password"),
+                            request.getParameter("email"),
+                            Integer.parseInt(request.getParameter("role"))
                     );
                     accountDAO.addAccount(account);
                 } else if ("deleteAccount".equals(action)) { // Thêm logic xóa tài khoản

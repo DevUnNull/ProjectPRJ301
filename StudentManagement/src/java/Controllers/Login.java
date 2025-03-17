@@ -1,5 +1,3 @@
-
-
 package Controllers;
 
 import dal.LoginDAO;
@@ -17,7 +15,7 @@ import models.Account;
  *
  * @author Admin
  */
-@WebServlet(name="Login", urlPatterns={"/login"})
+@WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 
     @Override
@@ -30,52 +28,37 @@ public class Login extends HttpServlet {
         //Xử lý thông tin acount
         String em = req.getParameter("email");
         String pw = req.getParameter("password");
-        //Kiểm tra không để trống
+        Account existAccount = new LoginDAO().login(em, pw);
+        // Kiểm tra đăng nhập
         try {
-            Account existAccount = new LoginDAO().login(em, pw);
-            if (em.isEmpty() && pw.isEmpty()) {
-                req.setAttribute("mes", "Vui lòng nhập tài khoản và mật khẩu");
-            } else if (em.isEmpty() && pw != null) {
-                req.setAttribute("mes", "Vui lòng nhập tài khoản");
-                //return ;
-            } else if (em != null && pw.isEmpty()) {
-                req.setAttribute("mes", "Vui lòng nhập mật khẩu");
-                //return ;
-            }// Kiểm tra đăng nhập
-            try {
+            if (existAccount != null) {
+                // Tạo session
+                HttpSession session = req.getSession();
+                session.setAttribute("account", existAccount);
 
-                if (existAccount != null) {
-                    // Tạo session
-                    HttpSession session = req.getSession();
-                    session.setAttribute("account", existAccount);
-
-                    // Kiểm tra role để chuyển hướng
-                    int role = existAccount.getRole();
-                    if (role == 1) {
-                        resp.sendRedirect(req.getContextPath() + "/viewAdmin.jsp");
-                    } else if (role == 2) {
-                        resp.sendRedirect(req.getContextPath() + "/viewTeacher.jsp");
-                    } else if (role == 3) {
-                        resp.sendRedirect(req.getContextPath() + "/viewStudent.jsp");
-                    } else {
-                        req.setAttribute("mes", "Role không hợp lệ!");
-                        req.getRequestDispatcher("/Login.jsp").forward(req, resp);
-                    }
-                    return; // Dừng tại đây để tránh chạy tiếp forward()
+                // Kiểm tra role để chuyển hướng
+                int role = existAccount.getRole();
+                if (role == 1) {
+                    resp.sendRedirect(req.getContextPath() + "/viewAdmin.jsp");
+                } else if (role == 2) {
+                    resp.sendRedirect(req.getContextPath() + "/viewTeacher.jsp");
+                } else if (role == 3) {
+                    resp.sendRedirect(req.getContextPath() + "/viewStudent.jsp");
+                } else {
+                    req.setAttribute("mes", "Role không hợp lệ!");
+                    req.getRequestDispatcher("/Login.jsp").forward(req, resp);
                 }
-
-                // Nếu đăng nhập thất bại
-                req.setAttribute("mes", "Email hoặc mật khẩu không đúng!");
-                req.getRequestDispatcher("/Login.jsp").forward(req, resp);
-            } catch (Exception e) {
-                System.err.println("Lỗi: " + e.getMessage());
-                req.setAttribute("mes", "Đã xảy ra lỗi hệ thống!");
-                req.getRequestDispatcher("/Login.jsp").forward(req, resp);
+                return; // Dừng tại đây để tránh chạy tiếp forward()
             }
+
+            // Nếu đăng nhập thất bại
+            req.setAttribute("mes", "Email hoặc mật khẩu không đúng!");
+            req.getRequestDispatcher("/Login.jsp").forward(req, resp);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println("Lỗi: " + e.getMessage());
+            req.setAttribute("mes", "Đã xảy ra lỗi hệ thống!");
+            req.getRequestDispatcher("/Login.jsp").forward(req, resp);
         }
-        
 
     }
 }
