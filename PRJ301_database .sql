@@ -16,10 +16,9 @@ CREATE TABLE Teacher (
 );
 
 INSERT INTO Teacher(TeacherID, TeacherName, Address, Phone, Email) VALUES
-(N'000001', N'Nguyễn Thị A', N'Hà Nội', 2578934659, N'a@gmail.com'),
-(N'000002', N'Nguyễn Văn B', N'Hà Nội', 7972074938, N'b@gmail.com'),
-(N'000003', N'Nguyễn Văn C', N'Hà Nội', 1234569642, N'c@gmail.com'),
-(N'000004', N'Nguyễn Thị D', N'Hà Nội', 7972074934, N'd@gmail.com');
+('T001', N'Nguyễn Văn Anh', N'123 Đường Lê Lợi, Hà Nội', 84901234567, 'nguyenvana@example.com'),
+('T002', N'Trần Thị Bích', N'456 Đường Trần Hưng Đạo, TP.HCM', 84812345678, 'tranthib@example.com'),
+('T003', N'Lê Văn Cao', N'789 Đường Nguyễn Huệ, Đà Nẵng', 84709876543, 'levanc@example.com');
 
 -- --------------------------------------------------------
 
@@ -97,12 +96,18 @@ CREATE TABLE Account (
 
 INSERT INTO Account (Id, Username, Password, Email, RoleId) VALUES
 (1, N'Admin', N'123', N'admin@gmail.com', 1),
-(2, N'phophong', N'123', N'phophong@gmail.com', 3);
+(2, N'Nguyễn Văn Anh', N'anh123', N'nguyenvana@example.com', 2),
+(3, N'Trần Thị Bích', N'1234bich', N'tranthib@example.com', 2),
+(4, N'Lê Văn Cao', N'caocaoqua', N'levanc@example.com', 2),
+(5, N'Vương Văn Quang', N'quang2601', N'quang@fpt.edu.vn', 3),
+(6, N'Nguyễn Quốc Anh', N'qanh2403', N'qanh@gmail.com', 3),
+(7, N'Nguyễn Phương Nam', N'ngoisaophuongnam', N'nam@gmail.com', 3),
+(8, N'Nguyễn Đình Nam', N'nam321', N'ndnam@fpt.edu.vn', 3);
 
 -- --------------------------------------------------------
 
 CREATE TABLE Student (
-  StudentID INT NOT NULL PRIMARY KEY,
+  StudentID NVARCHAR(50)  NOT NULL PRIMARY KEY,
   StudentName NVARCHAR(50) NOT NULL,
   Address NVARCHAR(255) NOT NULL,
   Phone BIGINT NOT NULL,
@@ -112,10 +117,10 @@ CREATE TABLE Student (
 );
 
 INSERT INTO Student (StudentID, StudentName, Address, Phone, Email, ClassID) VALUES
-(1, N'Vương Văn Quang', N'Hà Nội', 9797207493, 'quang@fpt.edu.vn', 1),
-(2, N'Nguyễn Quốc Anh', N'Hà Nội', 0912123456, 'qanh@gmail.com', 1),
-(3, N'Nguyễn Phương Nam', N'Hà Nội', 9797207493, 'nam@gmail.com', 2),
-(4, N'Nguyễn Đình Nam', N'Hà Nội', 0797207493, 'ndnam@fpt.edu.vn', 2);
+('HE111111', N'Vương Văn Quang', N'Hà Nội', 9797207493, 'quang@fpt.edu.vn', 1),
+('HE222222', N'Nguyễn Quốc Anh', N'Hà Nội', 0912123456, 'qanh@gmail.com', 1),
+('HE333333', N'Nguyễn Phương Nam', N'Hà Nội', 9797207493, 'nam@gmail.com', 2),
+('HE444444', N'Nguyễn Đình Nam', N'Hà Nội', 0797207493, 'ndnam@fpt.edu.vn', 2);
 
 -- --------------------------------------------------------
 
@@ -166,8 +171,8 @@ CREATE TABLE Subject_Teacher (
 );
 
 INSERT INTO Subject_Teacher (SubjectID, TeacherID) VALUES
-(N'2117100153', N'000001'),  
-(N'2117100158', N'000002'); 
+(N'2117100153', N'T001'),  
+(N'2117100158', N'T002'); 
 
 -- --------------------------------------------------------
 CREATE TABLE Grades (
@@ -177,7 +182,7 @@ CREATE TABLE Grades (
   Factor6 FLOAT NOT NULL,
   TotalGrade FLOAT NOT NULL,
   TeacherID NVARCHAR(10) NOT NULL REFERENCES Teacher(TeacherID) ON UPDATE CASCADE,
-  StudentID INT NOT NULL REFERENCES Student(StudentID) ON UPDATE CASCADE,
+  StudentID NVARCHAR(50) NOT NULL REFERENCES Student(StudentID) ON UPDATE CASCADE,
   SubjectID NVARCHAR(10) NULL REFERENCES Subject(SubjectID) ON DELETE SET NULL ON UPDATE CASCADE,
   CreditID NVARCHAR(10) NOT NULL REFERENCES Credit(CreditID) ON UPDATE NO ACTION ON DELETE NO ACTION,  
   BranchID NVARCHAR(10) NOT NULL REFERENCES Branch(BranchID) ON UPDATE NO ACTION ON DELETE NO ACTION,  
@@ -187,10 +192,10 @@ CREATE TABLE Grades (
 );
 
 INSERT INTO Grades (GradeID, Factor1, Factor3, Factor6, TotalGrade, TeacherID, StudentID, SubjectID, CreditID, BranchID, SemesterID, AcademicYearID) VALUES
-(39, 5, 6, 8, 7, N'000001', 1, N'2117100153', N'TC1', N'TL02', N'HK1', N'NH01'),
-(40, 0, 0, 0, 0, N'000001', 2, N'2117100153', N'TC1', N'TL02', N'HK1', N'NH01'),
-(41, 5, 6, 8, 7, N'000002', 3, N'2117100153', N'TC1', N'TL02', N'HK1', N'NH01'),
-(50, 5, 6, 6, 8, N'000002', 4, N'2117100153', N'TC1', N'TL02', N'HK1', N'NH01');
+(39, 5, 6, 8, 7, N'T001', N'HE111111',N'2117100153', N'TC1', N'TL02', N'HK1', N'NH01'),
+(40, 0, 0, 0, 0, N'T001', N'HE222222',N'2117100158', N'TC1', N'TL02', N'HK1', N'NH01'),
+(41, 5, 6, 8, 7, N'T002', N'HE333333',N'2117100153', N'TC1', N'TL02', N'HK1', N'NH01'),
+(50, 5, 6, 6, 8, N'T002', N'HE444444',N'2117100158', N'TC1', N'TL02', N'HK1', N'NH01');
 
 -- --------------------------------------------------------
 
