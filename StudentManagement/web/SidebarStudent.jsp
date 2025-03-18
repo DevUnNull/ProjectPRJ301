@@ -18,8 +18,8 @@
             </div>
 
             <ul>
-                <li><a href="#"><i class="far fa-window-maximize"></i>Lịch Học</a></li>
-                <li><a href="#"><i class="fas fa-trophy"></i>Điểm</a></li>                
+                <li><a href="#"><i class="far fa-window-maximize"></i>Thông Tin Cá Nhân</a></li>
+                <li><a href="#"><i class="fas fa-trophy"></i>Xem Điểm</a></li>                
             </ul>
 
             <div class="logout">
