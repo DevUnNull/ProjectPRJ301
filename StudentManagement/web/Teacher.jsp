@@ -29,7 +29,7 @@
             </ul>
 
             <div class="logout">
-                <a href="logout.jsp"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
+                <a href="Login.jsp"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
             </div>
         </div>
 
