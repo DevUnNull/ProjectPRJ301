@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Menu
-    Created on : Mar 17, 2025, 7:37:05 AM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -19,24 +13,19 @@
         <div class="sidebar">
             <!-- Thông tin tài khoản -->
             <div class="user-info">
-                <img src="IMAGE/lovepik-confident-workplace-business-male-image-png-image_400441790_wh1200.png" alt="Student">
-                <p class="username">Student</p>
+                <img src="IMAGE/lovepik-confident-workplace-business-male-image-png-image_400441790_wh1200.png" alt="Admin">
+                <p class="username">Admin</p>
             </div>
 
             <ul>
-                <li><a href="#"><i class="far fa-window-maximize"></i>Lịch Học</a></li>
-                <li><a href="#"><i class="fas fa-trophy"></i>Điểm</a></li>                
+                <li><a href="#"><i class="fas fa-users-cog"></i> Quản Lý Tài Khoản</a></li>
+                <li><a href="#"><i class="far fa-window-maximize"></i>Quản Lý Lớp Học</a></li>
+                <li><a href="#"><i class="far fa-window-maximize"></i>Quản Lý Sinh Viên</a></li>
+                <li><a href="#"><i class="far fa-window-maximize"></i>Quản Lý Giáo Viên</a></li>
+                <li><a href="#"><i class="fas fa-trophy"></i>Quản Lý Điểm</a></li>                
             </ul>
 
             <div class="logout">
                 <a href="Login.jsp"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
             </div>
         </div>
-
-        <div class="content">
-            <h1>Chào mừng đến với trang web!</h1>
-            <p>Đây là phần nội dung chính, bạn có thể thay đổi nội dung ở đây.</p>
-        </div>
-
-    </body>
-</html>

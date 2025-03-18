@@ -39,11 +39,11 @@ public class Login extends HttpServlet {
                 // Kiểm tra role để chuyển hướng
                 int role = existAccount.getRole();
                 if (role == 1) {
-                    resp.sendRedirect(req.getContextPath() + "/Admin.jsp");
+                    resp.sendRedirect(req.getContextPath() + "/viewAdmin.jsp");
                 } else if (role == 2) {
-                    resp.sendRedirect(req.getContextPath() + "/Teacher.jsp");
+                    resp.sendRedirect(req.getContextPath() + "/viewTeacher.jsp");
                 } else if (role == 3) {
-                    resp.sendRedirect(req.getContextPath() + "/Student.jsp");
+                    resp.sendRedirect(req.getContextPath() + "/viewStudent.jsp");
                 } else {
                     req.setAttribute("mes", "Role không hợp lệ!");
                     req.getRequestDispatcher("/Login.jsp").forward(req, resp);

@@ -1,114 +1,105 @@
-    /*
-    Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-    Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-    */
-    /* 
-        Created on : Mar 17, 2025, 7:37:39 AM
-        Author     : Admin
-    */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
 
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    background-color: #f4f4f4;
+}
 
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        background-color: #f4f4f4;
-    }
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
 
-    .sidebar {
-        width: 250px;
-        height: 100vh;
-        background: linear-gradient(135deg, #2c3e50, #34495e);
-        color: white;
-        padding: 20px;
-        position: fixed;
-        left: 0;
-        top: 0;
-        overflow: auto;
-        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s;
-    }
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
-    .sidebar h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 24px;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
 
-    .sidebar ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
+.sidebar ul li {
+    margin-bottom: 15px;
+}
 
-    .sidebar ul li {
-        margin-bottom: 15px;
-    }
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.2s;
+}
 
-    .sidebar ul li a {
-        color: white;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        padding: 12px;
-        border-radius: 8px;
-        font-size: 16px;
-        transition: background 0.3s, transform 0.2s;
-    }
+.sidebar ul li a i {
+    margin-right: 12px;
+    font-size: 18px;
+}
 
-    .sidebar ul li a i {
-        margin-right: 12px;
-        font-size: 18px;
-    }
+.sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
 
-    .sidebar ul li a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-    }
+.content {
+    margin-left: 270px;
+    padding: 30px;
+    flex: 1;
+}
 
-    .content {
-        margin-left: 270px;
-        padding: 30px;
-        flex: 1;
-    }
+.content h1 {
+    font-size: 32px;
+    color: #2c3e50;
+}
 
-    .content h1 {
-        font-size: 32px;
-        color: #2c3e50;
-    }
+.content p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+}
 
-    .content p {
-        font-size: 18px;
-        color: #555;
-        line-height: 1.6;
-    }
+.user-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-    .user-info {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+.user-info img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
 
-    .user-info img {
-        width: 60px; 
-        height: 60px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 2px solid white;
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-    }
+.username {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
 
-    .username {
-        margin-top: 8px;
-        font-size: 16px;
-        font-weight: bold;
-        color: white;
-    }
 
-    
 /* Ẩn menu con mặc định */
 .submenu {
     display: none;

@@ -1,17 +1,11 @@
-<%-- 
-    Document   : viewStudent
-    Created on : Mar 15, 2025, 11:40:03 AM
-    Author     : PHAM THAI AN
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home Student</title>
-    </head>
-    <body>
-        <h1>Student nè</h1>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:import url="SidebarStudent.jsp"/>
+
+        <div class="content">
+            <h1>Chào mừng đến với trang web!</h1>
+            <p>Đây là phần nội dung chính, bạn có thể thay đổi nội dung ở đây.</p>
+        </div>
+
     </body>
 </html>
