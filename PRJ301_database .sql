@@ -74,6 +74,24 @@ INSERT INTO  AcademicYear (AcademicYearID, AcademicYearName) VALUES
 
 -- --------------------------------------------------------
 
+CREATE TABLE Student (
+  StudentID NVARCHAR(50)  NOT NULL PRIMARY KEY,
+  StudentName NVARCHAR(50) NOT NULL,
+  Address NVARCHAR(255) NOT NULL,
+  Phone BIGINT NOT NULL,
+  Email NVARCHAR(60) NOT NULL,
+  ClassID INT NOT NULL,
+  FOREIGN KEY (ClassID) REFERENCES Class(ClassID)
+);
+
+INSERT INTO Student (StudentID, StudentName, Address, Phone, Email, ClassID) VALUES
+('HE111111', N'Vương Văn Quang', N'Hà Nội', 9797207493, 'quang@fpt.edu.vn', 1),
+('HE222222', N'Nguyễn Quốc Anh', N'Hà Nội', 0912123456, 'qanh@gmail.com', 1),
+('HE333333', N'Nguyễn Phương Nam', N'Hà Nội', 9797207493, 'nam@gmail.com', 2),
+('HE444444', N'Nguyễn Đình Nam', N'Hà Nội', 0797207493, 'ndnam@fpt.edu.vn', 2);
+
+-- --------------------------------------------------------
+
 CREATE TABLE Roles (
     RoleId INT NOT NULL PRIMARY KEY,
     Role NVARCHAR(50) NOT NULL
@@ -91,7 +109,11 @@ CREATE TABLE Account (
     Password NVARCHAR(255) NOT NULL,
     Email NVARCHAR(50) NOT NULL,
     RoleId INT NOT NULL,
+    TeacherID NVARCHAR(10),
+    StudentID NVARCHAR(50),
     FOREIGN KEY (RoleId) REFERENCES Roles(RoleId) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID) ON DELETE CASCADE ON UPDATE CASCADE;
 );
 
 INSERT INTO Account (Id, Username, Password, Email, RoleId) VALUES
@@ -103,24 +125,6 @@ INSERT INTO Account (Id, Username, Password, Email, RoleId) VALUES
 (6, N'Nguyễn Quốc Anh', N'qanh2403', N'qanh@gmail.com', 3),
 (7, N'Nguyễn Phương Nam', N'ngoisaophuongnam', N'nam@gmail.com', 3),
 (8, N'Nguyễn Đình Nam', N'nam321', N'ndnam@fpt.edu.vn', 3);
-
--- --------------------------------------------------------
-
-CREATE TABLE Student (
-  StudentID NVARCHAR(50)  NOT NULL PRIMARY KEY,
-  StudentName NVARCHAR(50) NOT NULL,
-  Address NVARCHAR(255) NOT NULL,
-  Phone BIGINT NOT NULL,
-  Email NVARCHAR(60) NOT NULL,
-  ClassID INT NOT NULL,
-  FOREIGN KEY (ClassID) REFERENCES Class(ClassID)
-);
-
-INSERT INTO Student (StudentID, StudentName, Address, Phone, Email, ClassID) VALUES
-('HE111111', N'Vương Văn Quang', N'Hà Nội', 9797207493, 'quang@fpt.edu.vn', 1),
-('HE222222', N'Nguyễn Quốc Anh', N'Hà Nội', 0912123456, 'qanh@gmail.com', 1),
-('HE333333', N'Nguyễn Phương Nam', N'Hà Nội', 9797207493, 'nam@gmail.com', 2),
-('HE444444', N'Nguyễn Đình Nam', N'Hà Nội', 0797207493, 'ndnam@fpt.edu.vn', 2);
 
 -- --------------------------------------------------------
 
