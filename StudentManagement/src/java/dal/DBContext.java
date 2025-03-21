@@ -6,10 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author FPT University - PRJ30X
- */
+
 public class DBContext {
     protected Connection connection;
 
@@ -22,8 +19,8 @@ public class DBContext {
         //where StudentDBContext is located in dal package, 
         try {
             String user = "sa";
-            String pass = "230904";
-            String url = "jdbc:sqlserver://LAPTOP-I0HQU370\\SQLEXPRESS:1433;databaseName=Project_PRJ301";
+            String pass = "123";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=Project_PRJ301";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
