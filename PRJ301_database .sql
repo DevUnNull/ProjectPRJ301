@@ -109,21 +109,21 @@ CREATE TABLE Account (
     Password NVARCHAR(255) NOT NULL,
     Email NVARCHAR(50) NOT NULL,
     RoleId INT NOT NULL,
-    TeacherID NVARCHAR(10),
-    StudentID NVARCHAR(50),
+    TeacherID NVARCHAR(10) NOT NULL,
+    StudentID NVARCHAR(50) NOT NULL,
     FOREIGN KEY (RoleId) REFERENCES Roles(RoleId) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
 INSERT INTO Account (Id, Username, Password, Email, RoleId,TeacherID,StudentID) VALUES
-(1, N'Admin', N'123', N'admin@gmail.com', 1, null, null),
-(2, N'Nguyễn Văn Anh', N'anh123', N'nguyenvana@example.com', 2, 'T001', null),
-(3, N'Trần Thị Bích', N'1234bich', N'tranthib@example.com', 2, 'T002', null),
-(4, N'Lê Văn Cao', N'caocaoqua', N'levanc@example.com', 2, 'T003', null),
-(5, N'Vương Văn Quang', N'quang2601', N'quang@fpt.edu.vn', 3,null, 'HE111111'),
-(6, N'Nguyễn Quốc Anh', N'qanh2403', N'qanh@gmail.com', 3, null, 'HE222222'),
-(7, N'Nguyễn Phương Nam', N'ngoisaophuongnam', N'nam@gmail.com', 3, null, 'HE333333'),
-(8, N'Nguyễn Đình Nam', N'nam321', N'ndnam@fpt.edu.vn', 3, null, 'HE444444');
+(1, N'Admin', N'123', N'admin@gmail.com', 1),
+(2, N'Nguyễn Văn Anh', N'anh123', N'nguyenvana@example.com', 2, T001, null),
+(3, N'Trần Thị Bích', N'1234bich', N'tranthib@example.com', 2, T002, null),
+(4, N'Lê Văn Cao', N'caocaoqua', N'levanc@example.com', 2, T003, null),
+(5, N'Vương Văn Quang', N'quang2601', N'quang@fpt.edu.vn', 3,null, 'HE111111),
+(6, N'Nguyễn Quốc Anh', N'qanh2403', N'qanh@gmail.com', 3, null, HE222222),
+(7, N'Nguyễn Phương Nam', N'ngoisaophuongnam', N'nam@gmail.com', 3, null, HE333333),
+(8, N'Nguyễn Đình Nam', N'nam321', N'ndnam@fpt.edu.vn', 3, null, HE444444);
 
 -- --------------------------------------------------------
 
