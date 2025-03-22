@@ -9,33 +9,23 @@ package models;
  * @author Admin
  */
 public class Credit {
-    private int creditId;
-    private Subject subject;
+    private String creditId;
     private int creditValue;
 
     public Credit() {
     }
 
-    public Credit(int creditId, Subject subject, int creditValue) {
+    public Credit(String creditId, int creditValue) {
         this.creditId = creditId;
-        this.subject = subject;
         this.creditValue = creditValue;
     }
 
-    public int getCreditId() {
+    public String getCreditId() {
         return creditId;
     }
 
-    public void setCreditId(int creditId) {
+    public void setCreditId(String creditId) {
         this.creditId = creditId;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
     }
 
     public int getCreditValue() {
@@ -45,4 +35,6 @@ public class Credit {
     public void setCreditValue(int creditValue) {
         this.creditValue = creditValue;
     }
+
+    
 }

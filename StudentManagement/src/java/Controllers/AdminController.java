@@ -67,13 +67,14 @@ public class AdminController extends HttpServlet {
             try {
                 if ("addStudent".equals(action)) {
                     Student student = new Student(
-                            Integer.parseInt(request.getParameter("studentID")),
-                            request.getParameter("studentName"),
-                            request.getParameter("address"),
-                            Long.parseLong(request.getParameter("phone")),
+                         request.getParameter("studentID"),
+                        request.getParameter("studentName"),
+                           request.getParameter("gender"),
+                           request.getParameter("address"),
+                            request.getParameter("phone"),
                             request.getParameter("email"),
-                            Integer.parseInt(request.getParameter("classID"))
-                    );
+                           Integer.parseInt(request.getParameter("classID"))
+                   );
                     studentDAO.addStudent(student);
                 } else if ("deleteStudent".equals(action)) {
                     int studentID = Integer.parseInt(request.getParameter("studentID"));
@@ -82,10 +83,11 @@ public class AdminController extends HttpServlet {
                     Teacher teacher = new Teacher(
                             request.getParameter("teacherID"),
                             request.getParameter("teacherName"),
+                            request.getParameter("gender"),
                             request.getParameter("address"),
-                            Long.parseLong(request.getParameter("phone")),
+                            request.getParameter("phone"),
                             request.getParameter("email")
-                    );
+                   );
                     teacherDAO.addTeacher(teacher);
                 } else if ("deleteTeacher".equals(action)) {
                     String teacherID = request.getParameter("teacherID");

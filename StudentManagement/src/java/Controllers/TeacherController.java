@@ -16,6 +16,7 @@ import java.util.List;
 
 @WebServlet("/TeacherController")
 public class TeacherController extends HttpServlet {
+
     private StudentDAO studentDAO;
     private GradeDAO gradeDAO;
 
@@ -50,34 +51,34 @@ public class TeacherController extends HttpServlet {
             try {
                 if ("addGrade".equals(action)) {
                     Grades grade = new Grades(
-                        Integer.parseInt(request.getParameter("gradeID")),
-                        Float.parseFloat(request.getParameter("factor1")),
-                        Float.parseFloat(request.getParameter("factor3")),
-                        Float.parseFloat(request.getParameter("factor6")),
-                        Float.parseFloat(request.getParameter("totalGrade")),
-                        request.getParameter("teacherID"),
-                        Integer.parseInt(request.getParameter("studentID")),
-                        request.getParameter("subjectID"),
-                        request.getParameter("creditID"),
-                        request.getParameter("branchID"),
-                        request.getParameter("semesterID"),
-                        request.getParameter("academicYearID")
+                            Integer.parseInt(request.getParameter("gradeID")),
+                            Float.parseFloat(request.getParameter("factor1")),
+                            Float.parseFloat(request.getParameter("factor3")),
+                            Float.parseFloat(request.getParameter("factor6")),
+                            Float.parseFloat(request.getParameter("totalGrade")),
+                            request.getParameter("teacherID"),
+                            request.getParameter("studentID"),
+                            request.getParameter("subjectID"),
+                            request.getParameter("creditID"),
+                            request.getParameter("branchID"),
+                            request.getParameter("semesterID"),
+                            request.getParameter("academicYearID")
                     );
                     gradeDAO.addGrade(grade);
                 } else if ("updateGrade".equals(action)) {
                     Grades grade = new Grades(
-                        Integer.parseInt(request.getParameter("gradeID")),
-                        Float.parseFloat(request.getParameter("factor1")),
-                        Float.parseFloat(request.getParameter("factor3")),
-                        Float.parseFloat(request.getParameter("factor6")),
-                        Float.parseFloat(request.getParameter("totalGrade")),
-                        request.getParameter("teacherID"),
-                        Integer.parseInt(request.getParameter("studentID")),
-                        request.getParameter("subjectID"),
-                        request.getParameter("creditID"),
-                        request.getParameter("branchID"),
-                        request.getParameter("semesterID"),
-                        request.getParameter("academicYearID")
+                            Integer.parseInt(request.getParameter("gradeID")),
+                            Float.parseFloat(request.getParameter("factor1")),
+                            Float.parseFloat(request.getParameter("factor3")),
+                            Float.parseFloat(request.getParameter("factor6")),
+                            Float.parseFloat(request.getParameter("totalGrade")),
+                            request.getParameter("teacherID"),
+                            request.getParameter("studentID"),
+                            request.getParameter("subjectID"),
+                            request.getParameter("creditID"),
+                            request.getParameter("branchID"),
+                            request.getParameter("semesterID"),
+                            request.getParameter("academicYearID")
                     );
                     gradeDAO.updateGrade(grade);
                 }

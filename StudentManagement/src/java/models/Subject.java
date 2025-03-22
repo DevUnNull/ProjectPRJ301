@@ -9,24 +9,26 @@ package models;
  * @author Admin
  */
 public class Subject {
-    private int subjectId;
+    private String subjectId;
     private String subjectName;
-    private Department department;
+    private Credit credit;
+    private Branch branch;
 
     public Subject() {
     }
 
-    public Subject(int subjectId, String subjectName, Department department) {
+    public Subject(String subjectId, String subjectName, Credit credit, Branch branch) {
         this.subjectId = subjectId;
         this.subjectName = subjectName;
-        this.department = department;
+        this.credit = credit;
+        this.branch = branch;
     }
 
-    public int getSubjectId() {
+    public String getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(String subjectId) {
         this.subjectId = subjectId;
     }
 
@@ -38,11 +40,20 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public Department getDepartment() {
-        return department;
+    public Credit getCredit() {
+        return credit;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setCredit(Credit credit) {
+        this.credit = credit;
     }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
 }

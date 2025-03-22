@@ -17,7 +17,7 @@ public class TeacherDAO {
 
     // Thêm giáo viên
     public void addTeacher(Teacher teacher) throws SQLException {
-        String sql = "INSERT INTO Teacher (teacherID, teacherName, address, phone, email) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Teacher (teacherID, teacherName, gender, address, phone, email) VALUES (?, ?, ?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -25,9 +25,10 @@ public class TeacherDAO {
             ps = conn.prepareStatement(sql);
             ps.setString(1, teacher.getTeacherID());
             ps.setString(2, teacher.getTeacherName());
-            ps.setString(3, teacher.getAddress());
-            ps.setLong(4, teacher.getPhone());
-            ps.setString(5, teacher.getEmail());
+            ps.setString(3, teacher.getGender());
+            ps.setString(4, teacher.getAddress());
+            ps.setString(5, teacher.getPhone());
+            ps.setString(6, teacher.getEmail());
             ps.executeUpdate();
         } finally {
             if (ps != null) ps.close();
@@ -53,7 +54,7 @@ public class TeacherDAO {
 
     // Sửa giáo viên
     public void updateTeacher(Teacher teacher) throws SQLException {
-        String sql = "UPDATE Teacher SET teacherName = ?, address = ?, phone = ?, email = ? WHERE teacherID = ?";
+        String sql = "UPDATE Teacher SET teacherName = ?, address = ?, gender = ?, phone = ?, email = ? WHERE teacherID = ?";
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -61,9 +62,10 @@ public class TeacherDAO {
             ps = conn.prepareStatement(sql);
             ps.setString(1, teacher.getTeacherName());
             ps.setString(2, teacher.getAddress());
-            ps.setLong(3, teacher.getPhone());
-            ps.setString(4, teacher.getEmail());
-            ps.setString(5, teacher.getTeacherID());
+            ps.setString(3, teacher.getGender());
+            ps.setString(4, teacher.getPhone());
+            ps.setString(5, teacher.getEmail());
+            ps.setString(6, teacher.getTeacherID());
             ps.executeUpdate();
         } finally {
             if (ps != null) ps.close();
@@ -86,8 +88,9 @@ public class TeacherDAO {
                 Teacher teacher = new Teacher(
                     rs.getString("teacherID"),
                     rs.getString("teacherName"),
+                    rs.getString("gender"),
                     rs.getString("address"),
-                    rs.getLong("phone"),
+                    rs.getString("phone"),
                     rs.getString("email")
                 );
                 teachers.add(teacher);

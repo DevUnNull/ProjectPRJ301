@@ -9,24 +9,22 @@ package models;
  * @author Admin
  */
 public class Department {
-    private int departmentId;
+    private String departmentId;
     private String departmentName;
-    private Branch branch;
 
     public Department() {
     }
 
-    public Department(int departmentId, String departmentName, Branch branch) {
+    public Department(String departmentId, String departmentName) {
         this.departmentId = departmentId;
         this.departmentName = departmentName;
-        this.branch = branch;
     }
 
-    public int getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(int departmentId) {
+    public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -37,12 +35,6 @@ public class Department {
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
+    
 
-    public Branch getBranch() {
-        return branch;
-    }
-
-    public void setBranch(Branch branch) {
-        this.branch = branch;
-    }
 }

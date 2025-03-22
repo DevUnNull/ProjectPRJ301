@@ -9,24 +9,22 @@ package models;
  * @author Admin
  */
 public class Semester {
-    private int semesterId;
+    private String semesterId;
     private String semesterName;
-    private AcademicYear academicYear;
 
     public Semester() {
     }
 
-    public Semester(int semesterId, String semesterName, AcademicYear academicYear) {
+    public Semester(String semesterId, String semesterName) {
         this.semesterId = semesterId;
         this.semesterName = semesterName;
-        this.academicYear = academicYear;
     }
 
-    public int getSemesterId() {
+    public String getSemesterId() {
         return semesterId;
     }
 
-    public void setSemesterId(int semesterId) {
+    public void setSemesterId(String semesterId) {
         this.semesterId = semesterId;
     }
 
@@ -37,12 +35,6 @@ public class Semester {
     public void setSemesterName(String semesterName) {
         this.semesterName = semesterName;
     }
+    
 
-    public AcademicYear getAcademicYear() {
-        return academicYear;
-    }
-
-    public void setAcademicYear(AcademicYear academicYear) {
-        this.academicYear = academicYear;
-    }
 }

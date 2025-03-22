@@ -18,18 +18,19 @@ public class StudentDAO {
 
     // Thêm học sinh
     public void addStudent(Student student) throws SQLException {
-        String sql = "INSERT INTO Student (studentID, studentName, address, phone, email, classID) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Student (studentID, studentName,gender, address, phone, email, classID) VALUES (?, ?, ?, ?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = db.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, student.getStudentId());
+            ps.setString(1, student.getStudentID());
             ps.setString(2, student.getStudentName());
-            ps.setString(3, student.getAddress());
-            ps.setLong(4, student.getPhone());
-            ps.setString(5, student.getEmail());
-            ps.setInt(6, student.getClassID());
+            ps.setString(3, student.getGender());
+            ps.setString(4, student.getAddress());
+            ps.setString(5, student.getPhone());
+            ps.setString(6, student.getEmail());
+            ps.setInt(7, student.getClassID());
             ps.executeUpdate();
         } finally {
             if (ps != null) ps.close();
@@ -55,18 +56,19 @@ public class StudentDAO {
 
     // Sửa học sinh
     public void updateStudent(Student student) throws SQLException {
-        String sql = "UPDATE Student SET studentName = ?, address = ?, phone = ?, email = ?, classID = ? WHERE studentID = ?";
+        String sql = "UPDATE Student SET studentName = ?, gender = ?, address = ?, phone = ?, email = ?, classID = ? WHERE studentID = ?";
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = db.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, student.getStudentName());
-            ps.setString(2, student.getAddress());
-            ps.setLong(3, student.getPhone());
-            ps.setString(4, student.getEmail());
-            ps.setInt(5, student.getClassID());
-            ps.setInt(6, student.getStudentId());
+            ps.setString(2, student.getGender());
+            ps.setString(3, student.getAddress());
+            ps.setString(4, student.getPhone());
+            ps.setString(5, student.getEmail());
+            ps.setInt(6, student.getClassID());
+            ps.setString(7, student.getStudentID());
             ps.executeUpdate();
         } finally {
             if (ps != null) ps.close();
@@ -86,13 +88,14 @@ public class StudentDAO {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Student student = new Student(
-                    rs.getInt("studentID"),
-                    rs.getString("studentName"),
-                    rs.getString("address"),
-                    rs.getLong("phone"),
-                    rs.getString("email"),
-                    rs.getInt("classID")
+                Student student = new Student(                
+                    rs.getString("studentID"),
+                   rs.getString("studentName"),
+                      rs.getString("gender"),
+                      rs.getString("address"),
+                       rs.getString("phone"),
+                       rs.getString("email"),
+                      rs.getInt("classID")
                 );
                 students.add(student);
             }

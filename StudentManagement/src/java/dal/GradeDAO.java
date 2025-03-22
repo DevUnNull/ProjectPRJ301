@@ -30,7 +30,7 @@ public class GradeDAO {
             ps.setFloat(4, grade.getFactor6());
             ps.setFloat(5, grade.getTotalGrade());
             ps.setString(6, grade.getTeacherID());
-            ps.setInt(7, grade.getStudentID());
+            ps.setString(7, grade.getStudentID());
             ps.setString(8, grade.getSubjectID());
             ps.setString(9, grade.getCreditID());
             ps.setString(10, grade.getBranchID());
@@ -57,7 +57,7 @@ public class GradeDAO {
             ps.setFloat(3, grade.getFactor6());
             ps.setFloat(4, grade.getTotalGrade());
             ps.setString(5, grade.getTeacherID());
-            ps.setInt(6, grade.getStudentID());
+            ps.setString(6, grade.getStudentID());
             ps.setString(7, grade.getSubjectID());
             ps.setString(8, grade.getCreditID());
             ps.setString(9, grade.getBranchID());
@@ -107,7 +107,7 @@ public class GradeDAO {
                     rs.getFloat("factor6"),
                     rs.getFloat("totalGrade"),
                     rs.getString("teacherID"),
-                    rs.getInt("studentID"),
+                    rs.getString("studentID"),
                     rs.getString("subjectID"),
                     rs.getString("creditID"),
                     rs.getString("branchID"),

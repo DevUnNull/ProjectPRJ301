@@ -9,22 +9,22 @@ package models;
  * @author Admin
  */
 public class Branch {
-    private int branchId;
+    private String branchId;
     private String branchName;
 
     public Branch() {
     }
 
-    public Branch(int branchId, String branchName) {
+    public Branch(String branchId, String branchName) {
         this.branchId = branchId;
         this.branchName = branchName;
     }
 
-    public int getBranchId() {
+    public String getBranchId() {
         return branchId;
     }
 
-    public void setBranchId(int branchId) {
+    public void setBranchId(String branchId) {
         this.branchId = branchId;
     }
 
@@ -35,4 +35,6 @@ public class Branch {
     public void setBranchName(String branchName) {
         this.branchName = branchName;
     }
+
+    
 }
