@@ -1,109 +1,92 @@
-
 package dal;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import dto.GradeJoin;
+import dto.StuClaDepJoin;
 import java.util.ArrayList;
 import java.util.List;
 import models.Student;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class StudentDAO {
-    private DBContext db;
+public class StudentDAO extends DBContext {
 
     public StudentDAO() {
-        db = new DBContext();
+        super();
     }
 
-    // Thêm học sinh
-    public void addStudent(Student student) throws SQLException {
-        String sql = "INSERT INTO Student (studentID, studentName,gender, address, phone, email, classID) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = db.getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, student.getStudentID());
-            ps.setString(2, student.getStudentName());
-            ps.setString(3, student.getGender());
-            ps.setString(4, student.getAddress());
-            ps.setString(5, student.getPhone());
-            ps.setString(6, student.getEmail());
-            ps.setInt(7, student.getClassID());
-            ps.executeUpdate();
-        } finally {
-            if (ps != null) ps.close();
-            db.closeConnection(conn);
+    //Lấy thông tin sinh viên by ID
+    public Student getStudentById(String studentId) throws SQLException {
+        Student student = null;
+        String sql = "select StudentID,\n"
+                + "StudentName, \n"
+                + "Gender, \n"
+                + "Address, \n"
+                + "Phone, \n"
+                + "Email from Student WHERE studentId = ?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, studentId);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            String id = rs.getString("studentID");
+            String name = rs.getString("studentName");
+            String gender = rs.getString("Gender");
+            String addr = rs.getString("address");
+            String phone = rs.getString("phone");//fix
+            String email = rs.getString("email");
+            student = new Student(id, name, gender, addr, phone, email, 0);
         }
+
+        return student;
     }
 
-    // Xóa học sinh
-    public void deleteStudent(int studentID) throws SQLException {
-        String sql = "DELETE FROM Student WHERE studentID = ?";
-        Connection conn = null;
-        PreparedStatement ps = null;
+    //Lấy thông tin lớp học
+    public List<StuClaDepJoin> getClass(String studentId) throws SQLException {
+        List<StuClaDepJoin> cla = new ArrayList<>();
         try {
-            conn = db.getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, studentID);
-            ps.executeUpdate();
-        } finally {
-            if (ps != null) ps.close();
-            db.closeConnection(conn);
-        }
-    }
-
-    // Sửa học sinh
-    public void updateStudent(Student student) throws SQLException {
-        String sql = "UPDATE Student SET studentName = ?, gender = ?, address = ?, phone = ?, email = ?, classID = ? WHERE studentID = ?";
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = db.getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, student.getStudentName());
-            ps.setString(2, student.getGender());
-            ps.setString(3, student.getAddress());
-            ps.setString(4, student.getPhone());
-            ps.setString(5, student.getEmail());
-            ps.setInt(6, student.getClassID());
-            ps.setString(7, student.getStudentID());
-            ps.executeUpdate();
-        } finally {
-            if (ps != null) ps.close();
-            db.closeConnection(conn);
-        }
-    }
-
-    // Lấy danh sách học sinh
-    public List<Student> getAllStudents() throws SQLException {
-        List<Student> students = new ArrayList<>();
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            conn = db.getConnection();
-            String sql = "SELECT * FROM Student";
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
+            String sql = "select c.classID ,c.className, d.departmentName from Student s \n"
+                    + "left join Class c on s.classID = c.classID\n"
+                    + "left join Department d on c.departmentID = d.departmentID\n"
+                    + "where s.studentID = ?";
+            PreparedStatement po = connection.prepareStatement(sql);
+            po.setString(1, studentId);
+            ResultSet rs = po.executeQuery();
             while (rs.next()) {
-                Student student = new Student(                
-                    rs.getString("studentID"),
-                   rs.getString("studentName"),
-                      rs.getString("gender"),
-                      rs.getString("address"),
-                       rs.getString("phone"),
-                       rs.getString("email"),
-                      rs.getInt("classID")
-                );
-                students.add(student);
+                String classId = rs.getString("classId");
+                String nameCl = rs.getString("className");
+                String depName = rs.getString("departmentName");
+                StuClaDepJoin c = new StuClaDepJoin(studentId, classId, nameCl, depName);
+                cla.add(c);
             }
-        } finally {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            db.closeConnection(conn);
+        } catch (Exception e) {
+            throw new SQLException();
         }
-        return students;
+        return cla;
     }
+
+    //Show điểm
+    public List<GradeJoin> getAllGrade(String stuId) {
+        List<GradeJoin> list = new ArrayList<>();
+        try {
+            String sql = "select s.SubjectName, g.Factor1, g.Factor3, g.Factor6, g.TotalGrade from Grades g\n"
+                    + "join Subject s on g.SubjectID = s.SubjectID\n"
+                    + "where g.StudentID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, stuId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String sname = rs.getString("SubjectName");
+                float grade1 = rs.getFloat("Factor1");
+                float grade2 = rs.getFloat("Factor3");
+                float grade3 = rs.getFloat("Factor6");
+                float total = rs.getFloat("TotalGrade");
+                GradeJoin g = new GradeJoin(stuId, sname, grade1, grade2, grade3, total);
+                list.add(g);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Log lỗi để dễ debug
+        }
+        return list;
+    }
+
 }
