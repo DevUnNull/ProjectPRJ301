@@ -10,41 +10,41 @@ go
 CREATE TABLE Teacher (
     TeacherID NVARCHAR(10) NOT NULL PRIMARY KEY,
     TeacherName NVARCHAR(50) NOT NULL,
+    Gender NVARCHAR(10) NOT NULL,
     Address NVARCHAR(255) NOT NULL,
-    Phone BIGINT NOT NULL,
+    Phone NVARCHAR(15) NOT NULL,
     Email NVARCHAR(60) NOT NULL
 );
 
-INSERT INTO Teacher(TeacherID, TeacherName, Address, Phone, Email) VALUES
-('T001', N'Nguyễn Văn Anh', N'123 Đường Lê Lợi, Hà Nội', 84901234567, 'nguyenvana@example.com'),
-('T002', N'Trần Thị Bích', N'456 Đường Trần Hưng Đạo, TP.HCM', 84812345678, 'tranthib@example.com'),
-('T003', N'Lê Văn Cao', N'789 Đường Nguyễn Huệ, Đà Nẵng', 84709876543, 'levanc@example.com');
+INSERT INTO Teacher(TeacherID, TeacherName, Gender, Address, Phone, Email) VALUES
+(N'T001', N'Nguyễn Văn Anh',N'Nam', N'123 Đường Lê Lợi, Hà Nội', '84901234567', 'nguyenvana@gmail.com'),
+(N'T002', N'Trần Thị Bích',N'Nữ', N'456 Đường Trần Hưng Đạo, TP.HCM', '84812345678', 'tranthib@gamil.com'),
+(N'T003', N'Lê Văn Cao', N'Nam', N'789 Đường Nguyễn Huệ, Đà Nẵng', '84709876543', 'levanc@gamil.com');
 
 -- --------------------------------------------------------
 
 CREATE TABLE Semester (
     SemesterID NVARCHAR(10) NOT NULL PRIMARY KEY,
-    SemesterName NVARCHAR(255) NOT NULL,
+    SemesterName NVARCHAR(255) NOT NULL
     
 );
 
 INSERT INTO Semester (SemesterID, SemesterName) VALUES
-(N'HK1', N'1'),
-(N'HK2', N'2'),
-(N'HK3', N'3');
+(N'S1', N'1'),
+(N'S2', N'2'),
+(N'S3', N'3');
 
 -- --------------------------------------------------------
 
 CREATE TABLE Department (
   DepartmentID NVARCHAR(10) NOT NULL PRIMARY KEY,
-  DepartmentName NVARCHAR(255) NOT NULL,
-  DepartmentContact NVARCHAR(50) NOT NULL
+  DepartmentName NVARCHAR(255) NOT NULL
 );
 
-INSERT INTO Department (DepartmentID, DepartmentName, DepartmentContact) VALUES
-(N'CNTT', N'Công Nghệ Thông Tin', N'cntt@gmail.com'),
-(N'LYHOASINH', N'Lý Hóa Sinh', N'lyhoasinh@gmail.com'),
-(N'TOAN', N'Sư Phạm Toán', N'toan@gmail.com');
+INSERT INTO Department (DepartmentID, DepartmentName) VALUES
+(N'AL', N'AL-L201'),
+(N'DE', N'DE-201'),
+(N'BE', N'BE-201');
 
 -- --------------------------------------------------------
 
@@ -55,9 +55,9 @@ CREATE TABLE Class (
 );
 
 INSERT INTO Class (ClassID, ClassName, DepartmentID) VALUES
-(1, N'HE123456', N'CNTT'),
-(2, N'HE123768', N'TOAN'),
-(3, N'HE987654', N'CNTT');
+(1, N'SE1919', N'AL'),
+(2, N'SE1920', N'BE'),
+(3, N'SE1921', N'DE');
 
 -- --------------------------------------------------------
 
@@ -68,63 +68,59 @@ CREATE TABLE AcademicYear (
 );
 
 INSERT INTO  AcademicYear (AcademicYearID, AcademicYearName) VALUES
-(N'NH01', N'2017-2018'),
-(N'NH02', N'2018-2019'),
-(N'NH03', N'2019-2020');
+(N'AY01', N'2023-2024'),
+(N'AY02', N'2024-2025'),
+(N'AY03', N'2025-2026');
 
 -- --------------------------------------------------------
-
-CREATE TABLE Student (
-  StudentID NVARCHAR(50)  NOT NULL PRIMARY KEY,
-  StudentName NVARCHAR(50) NOT NULL,
-  Address NVARCHAR(255) NOT NULL,
-  Phone BIGINT NOT NULL,
-  Email NVARCHAR(60) NOT NULL,
-  ClassID INT NOT NULL,
-  FOREIGN KEY (ClassID) REFERENCES Class(ClassID)
-);
-
-INSERT INTO Student (StudentID, StudentName, Address, Phone, Email, ClassID) VALUES
-('HE111111', N'Vương Văn Quang', N'Hà Nội', 9797207493, 'quang@fpt.edu.vn', 1),
-('HE222222', N'Nguyễn Quốc Anh', N'Hà Nội', 0912123456, 'qanh@gmail.com', 1),
-('HE333333', N'Nguyễn Phương Nam', N'Hà Nội', 9797207493, 'nam@gmail.com', 2),
-('HE444444', N'Nguyễn Đình Nam', N'Hà Nội', 0797207493, 'ndnam@fpt.edu.vn', 2);
-
--- --------------------------------------------------------
-
 CREATE TABLE Roles (
-    RoleId INT NOT NULL PRIMARY KEY,
-    Role NVARCHAR(50) NOT NULL
+    id INT NOT NULL PRIMARY KEY,
+    role NVARCHAR(50) NOT NULL
 );
 
-INSERT INTO Roles (RoleId, Role) VALUES
+INSERT INTO Roles (id, role) VALUES
 (1, N'Admin'),
 (2, N'Teacher'),
 (3, N'Student');
 -- --------------------------------------------------------
 
 CREATE TABLE Account (
-    Id INT NOT NULL PRIMARY KEY,
-    Username NVARCHAR(50) NOT NULL,
-    Password NVARCHAR(255) NOT NULL,
-    Email NVARCHAR(50) NOT NULL,
-    RoleId INT NOT NULL,
-    TeacherID NVARCHAR(10) NOT NULL,
-    StudentID NVARCHAR(50) NOT NULL,
-    FOREIGN KEY (RoleId) REFERENCES Roles(RoleId) ON DELETE CASCADE ON UPDATE CASCADE
-
+    id INT NOT NULL PRIMARY KEY,
+    username NVARCHAR(50) NOT NULL,
+    password NVARCHAR(255) NOT NULL,
+    email NVARCHAR(50) NOT NULL,
+    role int NOT NULL,
+    FOREIGN KEY (role) REFERENCES Roles(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO Account (Id, Username, Password, Email, RoleId,TeacherID,StudentID) VALUES
+INSERT INTO Account (id, username, password, email, role) VALUES
 (1, N'Admin', N'123', N'admin@gmail.com', 1),
-(2, N'Nguyễn Văn Anh', N'anh123', N'nguyenvana@example.com', 2, T001, null),
-(3, N'Trần Thị Bích', N'1234bich', N'tranthib@example.com', 2, T002, null),
-(4, N'Lê Văn Cao', N'caocaoqua', N'levanc@example.com', 2, T003, null),
-(5, N'Vương Văn Quang', N'quang2601', N'quang@fpt.edu.vn', 3,null, 'HE111111),
-(6, N'Nguyễn Quốc Anh', N'qanh2403', N'qanh@gmail.com', 3, null, HE222222),
-(7, N'Nguyễn Phương Nam', N'ngoisaophuongnam', N'nam@gmail.com', 3, null, HE333333),
-(8, N'Nguyễn Đình Nam', N'nam321', N'ndnam@fpt.edu.vn', 3, null, HE444444);
+(2, N'Nguyễn Văn Anh', N'anh123', N'nguyenvana@gmail.com', 2),
+(3, N'Trần Thị Bích', N'1234bich', N'tranthib@gmail.com', 2),
+(4, N'Lê Văn Cao', N'caocaoqua', N'levanc@gmail.com', 2),
+(5, N'Vương Văn Quang', N'quang2601', N'quang@fpt.edu.vn', 3),
+(6, N'Nguyễn Quốc Anh', N'qanh2403', N'qanh@gmail.com', 3),
+(7, N'Nguyễn Phương Nam', N'ngoisaophuongnam', N'nam@gmail.com', 3),
+(8, N'Nguyễn Đình Nam', N'nam321', N'ndnam@fpt.edu.vn', 3);
 
+-- --------------------------------------------------------
+
+CREATE TABLE Student (
+  StudentID NVARCHAR(50) NOT NULL PRIMARY KEY,
+  StudentName NVARCHAR(50) NOT NULL,
+  Gender NVARCHAR(15) NOT NULL,
+  Address NVARCHAR(255) NOT NULL,
+  Phone NVARCHAR(10) NOT NULL,
+  Email NVARCHAR(60) NOT NULL,
+  ClassID INT NOT NULL,
+  FOREIGN KEY (ClassID) REFERENCES Class(ClassID)
+);
+
+INSERT INTO Student (StudentID, StudentName, Gender, Address, Phone, Email, ClassID) VALUES
+('HE111111', N'Vương Văn Quang',N'Nam', N'Hà Nội', '9797207493', 'quang@fpt.edu.vn', 1),
+('HE222222', N'Nguyễn Quốc Anh',N'Nam', N'Hà Nội', '0912123456', 'qanh@gmail.com', 1),
+('HE333333', N'Nguyễn Phương Nam',N'Nam', N'Hà Nội', '9797207493', 'nam@gmail.com', 2),
+('HE444444', N'Nguyễn Đình Nam',N'Nam', N'Hà Nội', '0797207493', 'ndnam@fpt.edu.vn', 2);
 -- --------------------------------------------------------
 
 CREATE TABLE Branch (
@@ -133,9 +129,9 @@ CREATE TABLE Branch (
 );
 
 INSERT INTO Branch (BranchID, BranchName) VALUES
-(N'TL01', N'Chính trị và Xã Hội'),
-(N'TL02', N'Chuyên Nghành'),
-(N'TL03', N'Du Học');
+(N'B01', N'Kinh tế'),
+(N'B02', N'Ngôn ngữ'),
+(N'B03', N'Công nghệ thông tin');
 
 -- --------------------------------------------------------
 
@@ -159,9 +155,9 @@ CREATE TABLE Subject (
 );
 
 INSERT INTO Subject (SubjectID, SubjectName, CreditID, BranchID) VALUES
-(N'2117100153', N'Toán Cao Cấp', N'TC2', N'TL02'),
-(N'2117100158', N'Lập Trình Di Động', N'TC2', N'TL02'),
-(N'211710054', N'Triết Học', N'TC2', N'TL01');
+(N'2117100153', N'Toán Cao Cấp', N'TC2', N'B01'),
+(N'2117100158', N'Xác suất thống kê', N'TC2', N'B01'),
+(N'211710054', N'Tiếng Hàn', N'TC2', N'B02');
 
 -- --------------------------------------------------------
 
@@ -179,7 +175,7 @@ INSERT INTO Subject_Teacher (SubjectID, TeacherID) VALUES
 
 -- --------------------------------------------------------
 CREATE TABLE Grades (
-  GradeID INT NOT NULL PRIMARY KEY,  
+ GradeID INT NOT NULL PRIMARY KEY,  
   Factor1 FLOAT NOT NULL,
   Factor3 FLOAT NOT NULL,
   Factor6 FLOAT NOT NULL,
@@ -195,11 +191,10 @@ CREATE TABLE Grades (
 );
 
 INSERT INTO Grades (GradeID, Factor1, Factor3, Factor6, TotalGrade, TeacherID, StudentID, SubjectID, CreditID, BranchID, SemesterID, AcademicYearID) VALUES
-(39, 5, 6, 8, 7, N'T001', N'HE111111',N'2117100153', N'TC1', N'TL02', N'HK1', N'NH01'),
-(40, 0, 0, 0, 0, N'T001', N'HE222222',N'2117100158', N'TC1', N'TL02', N'HK1', N'NH01'),
-(41, 5, 6, 8, 7, N'T002', N'HE333333',N'2117100153', N'TC1', N'TL02', N'HK1', N'NH01'),
-(50, 5, 6, 6, 8, N'T002', N'HE444444',N'2117100158', N'TC1', N'TL02', N'HK1', N'NH01');
-
+(39, 5, 6, 8, 7, N'T001', N'HE111111',N'2117100153', N'TC1', N'B02', N'S1', N'AY01'),
+(40, 0, 0, 0, 0, N'T001', N'HE222222',N'2117100158', N'TC1', N'B02', N'S1', N'AY01'),
+(41, 5, 6, 8, 7, N'T002', N'HE333333',N'2117100153', N'TC1', N'B02', N'S1', N'AY01'),
+(50, 5, 6, 6, 8, N'T002', N'HE444444',N'2117100158', N'TC1', N'B02', N'S1', N'AY01');
 -- --------------------------------------------------------
 
 -- Check and add the teacherID column to the Teacher table if it doesn't exist
