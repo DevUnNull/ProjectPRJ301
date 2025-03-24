@@ -85,7 +85,6 @@ public class StudentController extends HttpServlet {
                     } else {
                         msg = "Mã sinh viên không tồn tại!";
                         req.setAttribute("msg", msg);
-                        
                     }
                     req.getRequestDispatcher("grade.jsp").forward(req, resp);
                 } catch (Exception e) {
