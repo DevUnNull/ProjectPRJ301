@@ -89,4 +89,26 @@ public class StudentDAO extends DBContext {
         return list;
     }
 
+    public List<Student> getAllStudents() throws SQLException {
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT StudentID, StudentName, Gender, Address, Phone, Email FROM Student";
+        
+        try (PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            
+            while (rs.next()) {
+                Student student = new Student(
+                    rs.getString("StudentID"),
+                    rs.getString("StudentName"),
+                    rs.getString("Gender"),
+                    rs.getString("Address"),
+                    rs.getString("Phone"),
+                    rs.getString("Email"),
+                    0 // Giả sử có một thuộc tính khác trong Student
+                );
+                students.add(student);
+            }
+        }
+        return students;
+    }
 }
