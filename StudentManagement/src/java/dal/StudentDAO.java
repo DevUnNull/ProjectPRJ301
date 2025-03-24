@@ -2,6 +2,7 @@ package dal;
 
 import dto.GradeJoin;
 import dto.StuClaDepJoin;
+import dto.StudentClass;
 import java.util.ArrayList;
 import java.util.List;
 import models.Student;
@@ -110,5 +111,29 @@ public class StudentDAO extends DBContext {
             }
         }
         return students;
+    }
+    //Lấy ra danh sách sinh của 1 lớp
+    public List<StudentClass> getAllStudentByClassName(String className) {
+        List<StudentClass> sc = new ArrayList<>();
+        try {
+            String sql = "select s.StudentID, s.StudentName, s.Gender, s.Address, s.Phone, s.Email from Student s\n"
+                    + "join Class c on s.ClassID = c.ClassID\n"
+                    + "where c.ClassName = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, className);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String stuId = rs.getString("StudentID");
+                String stuName = rs.getString("StudentName");
+                String stuGender = rs.getString("Gender");
+                String stuAdd = rs.getString("Address");
+                String stuPhone = rs.getString("Phone");
+                String stuEmail = rs.getString("Email");
+                StudentClass st = new StudentClass(className, stuEmail, stuName, stuGender, stuAdd, stuPhone, stuEmail);
+                sc.add(st);
+            }
+        } catch (Exception e) {
+        }
+        return sc;
     }
 }

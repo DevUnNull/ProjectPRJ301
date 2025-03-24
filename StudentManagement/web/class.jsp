@@ -31,7 +31,7 @@
                         <c:forEach var="a" items="${existstudent}">
                         <tr>
                             <td>${a.getClaId()}</td>
-                            <td>${a.getClaName()}</td>
+                            <td><a href="student?action=stu&ClassName=${a.getClaName()}">${a.getClaName()}</a></td>
                             <td>${a.getDepName()}</td>
                         </tr>
                             

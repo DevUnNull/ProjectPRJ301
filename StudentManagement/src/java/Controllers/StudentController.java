@@ -3,6 +3,7 @@ package Controllers;
 import dal.StudentDAO;
 import dto.GradeJoin;
 import dto.StuClaDepJoin;
+import dto.StudentClass;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -89,6 +90,15 @@ public class StudentController extends HttpServlet {
                     req.getRequestDispatcher("grade.jsp").forward(req, resp);
                 } catch (Exception e) {
                 }                
+            }
+            //Hiển thị thông tin sinh viên 1 lớp
+            if ("stu".equals(action)) {
+                String claName = req.getParameter("ClassName");
+                List<StudentClass> sc = studentDAO.getAllStudentByClassName(claName);
+                if(sc != null){
+                    req.setAttribute("studentClass", sc);
+                }
+                req.getRequestDispatcher("allStudent.jsp").forward(req, resp);
             }
         } catch (Exception e) {
             System.err.println("Lỗi: " + e.getMessage());
