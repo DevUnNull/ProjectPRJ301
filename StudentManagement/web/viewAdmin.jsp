@@ -2,8 +2,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="SidebarAdmin.jsp"/>
 <div class="content">
-    <h1>Chào mừng đến với trang web!</h1>
-    <p>Đây là phần nội dung chính, bạn có thể thay đổi nội dung ở đây.</p>
+    <h1>Bạn đang truy cập bằng quyền của Admin</h1>
+    <p></p>
 </div>
 
 </body>
