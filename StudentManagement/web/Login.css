@@ -3,18 +3,9 @@
     Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css để chỉnh sửa mẫu này
 */
 
-/* 
-    Created on : Mar 12, 2025, 6:16:38 PM
-    Author     : Admin
-*/
 
-/* 
-===============================
-    1. RESET CSS CƠ BẢN
-===============================
-*/
 
-/* Đặt lại margin, padding cho tất cả phần tử và thiết lập kiểu chữ mặc định */
+
 * {
     margin: 0;
     padding: 0;
@@ -22,33 +13,22 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* 
-===============================
-    2. CĂN GIỮA MÀN HÌNH
-===============================
-*/
 
-/* Thiết lập chiều cao toàn bộ trang là 100% chiều cao viewport và căn giữa nội dung */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-image: url('IMAGE/fpthanoi01-130.jpg');
-/*    background: linear-gradient(to right, #4facfe, #00f2fe);  Hiệu ứng gradient */
-    padding: 20px; /* Giúp hiển thị tốt hơn trên màn hình nhỏ */
-    background-size: cover; /* Ảnh phủ kín màn hình */
-    background-position: center; /* Căn giữa ảnh */
-    background-repeat: no-repeat; /* Không lặp ảnh */
+    padding: 20px; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-/* 
-===============================
-    3. FORM ĐĂNG NHẬP
-===============================
-*/
 
-/* Thiết lập form đăng nhập nhỏ gọn và nằm giữa màn hình */
+
+
 .wrapper {
     width: 350px;
     padding: 30px;
@@ -59,53 +39,42 @@ body {
     text-align: center;
 }
 
-/* Tiêu đề của form */
+
 .wrapper h1 {
-    font-size: 20px; /* Giảm kích thước chữ */
+    font-size: 20px; 
     margin-bottom: 15px;
     color: #333;
 }
 
-/* 
-===============================
-    4. Ô NHẬP LIỆU (USERNAME, PASSWORD)
-===============================
-*/
 
-/* Khối chứa ô nhập */
+
 .input-box {
     position: relative;
     width: 100%;
     margin-bottom: 12px;
 }
 
-/* Thiết lập kiểu dáng cho ô nhập liệu */
+
 .input-box input {
     width: 100%;
-    padding: 8px 10px 8px 35px; /* Dành không gian bên trái cho icon */
+    padding: 8px 10px 8px 35px; 
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
     background: #f9f9f9;
 }
 
-/* Icon trong ô nhập liệu */
+
 .input-box i {
     position: absolute;
-    left: 10px; /* Căn trái */
+    left: 10px;
     top: 50%;
-    transform: translateY(-50%); /* Căn giữa theo chiều dọc */
+    transform: translateY(-50%); 
     color: #555;
     font-size: 16px;
 }
 
-/* 
-===============================
-    5. REMEMBER ME & FORGOT PASSWORD
-===============================
-*/
 
-/* Chia thành hai phần: "Remember me" và "Forgot password" */
 .remember-forgot {
     display: flex;
     justify-content: space-between;
@@ -113,13 +82,9 @@ body {
     margin-bottom: 12px;
 }
 
-/* 
-===============================
-    6. NÚT ĐĂNG NHẬP
-===============================
-*/
 
-/* Thiết lập kiểu dáng cho nút đăng nhập */
+
+
 .btn {
     width: 100%;
     padding: 8px;
@@ -131,31 +96,22 @@ body {
     cursor: pointer;
 }
 
-/* Hiệu ứng hover khi di chuột vào nút */
 .btn:hover {
     background: #00c3ff;
 }
 
-/* 
-===============================
-    7. LINK ĐĂNG KÝ
-===============================
-*/
 
-/* Khoảng cách phía trên */
 .register-link {
     margin-top: 10px;   
     font-size: 12px;
 }
 
-/* Kiểu dáng cho link đăng ký */
 .register-link a {
     text-decoration: none;
     color: #007bff;
     font-weight: bold;
 }
 
-/* Hiệu ứng hover cho link */
 .register-link a:hover {
     text-decoration: underline;
 }
