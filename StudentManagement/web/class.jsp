@@ -1,14 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="SidebarStudent.jsp"/>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Classroom</title>
-    </head>
-    <body>
-        <!-- Form nhập mã sinh viên -->
+
+        <div class="content">
+            <!-- Form nhập mã sinh viên -->
         <form action="student" method="get">
             <input type="hidden" name="action" value="depa"/>
             Student Code: <input type="text" name="idsv" required/>
@@ -49,5 +44,7 @@
             <p>${requestScope.Department}</p>
             </table>
         
+        </div>
+
     </body>
 </html>

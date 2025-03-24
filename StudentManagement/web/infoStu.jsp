@@ -2,14 +2,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="SidebarStudent.jsp"/>
 
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Information Student</title>
-</head>
-<body>
-    
-    <form action="student">
+        <div class="content">
+            <form action="student">
         Mã sinh viên: <input type="text" name="codesv" required="Please enter the studentId"/>
         <input type="submit" value="OK" />
     </form>
@@ -42,5 +36,7 @@
             </tbody>
         </table>
     </c:if>
-</body>
+        </div>
+
+    </body>
 </html>
