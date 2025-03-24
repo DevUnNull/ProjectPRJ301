@@ -32,7 +32,7 @@
         </table>
 
     </c:if>
-
+    <a href="class.jsp">Quay lại</a>
 
 </div>
 
