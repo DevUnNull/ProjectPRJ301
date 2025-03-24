@@ -1,0 +1,118 @@
+/* Định dạng chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+}
+
+/* Nội dung chính */
+.content {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Table 1 - Form nhập mã sinh viên */
+.table-1 {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    
+}
+
+.table-1 form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.table-1 input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.table-1 input[type="text"]:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+.table-1 input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.table-1 input[type="submit"]:hover {
+    background: #1a252f;
+}
+
+/* Table 2 - Hiển thị thông tin sinh viên */
+.table-2 {
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    border-radius:8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    
+}
+
+.table-2 table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-2 thead {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+.table-2 th, .table-2 td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Màu xen kẽ giữa các dòng */
+.table-2 tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+/* Hiệu ứng hover */
+.table-2 tbody tr:hover {
+    background: #e3e6ea;
+}
+
+/* Thông báo lỗi */
+.table-1 p {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
