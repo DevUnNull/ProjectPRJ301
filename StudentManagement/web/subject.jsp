@@ -1,14 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="SidebarStudent.jsp"/>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Subject</title>
-    </head>
-    <body>
-        <h2>Thông tin môn học</h2>
+
+        <div class="content">
+            <h2>Thông tin môn học</h2>
 
     <c:if test="${not empty subject}">
         <p><strong>Mã môn học:</strong> ${subject.getSubId()}</p><br/>
@@ -22,5 +17,7 @@
     </c:if>
 
     <a href="grade.jsp">Quay lại</a>
+        </div>
+
     </body>
 </html>
