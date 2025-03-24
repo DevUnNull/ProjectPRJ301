@@ -1,0 +1,107 @@
+/* Định dạng chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Tiêu đề */
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+/* Nút thêm tài khoản */
+a[href="ThemTaiKhoan.jsp"] {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background: #27ae60;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+a[href="ThemTaiKhoan.jsp"]:hover {
+    background: #219150;
+}
+
+/* Bảng hiển thị danh sách tài khoản */
+table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+thead {
+    background: #2c3e50;
+    color: white;
+    font-size: 18px;
+}
+
+/* Dòng xen kẽ */
+tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+tbody tr:hover {
+    background: #e3e6ea;
+}
+
+/* Hành động (chỉnh sửa & xóa) */
+.action-links a {
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.action-links a:first-child {
+    background: #f39c12;
+    color: white;
+}
+
+.action-links a:first-child:hover {
+    background: #e67e22;
+}
+
+.action-links a:last-child {
+    background: #c0392b;
+    color: white;
+}
+
+.action-links a:last-child:hover {
+    background: #a93226;
+}
+
+/* Không có dữ liệu */
+.no-data {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #c0392b;
+    padding: 15px;
+}

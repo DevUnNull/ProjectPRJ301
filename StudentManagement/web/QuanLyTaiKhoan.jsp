@@ -1,46 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Quản Lý Tài Khoản</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        .no-data {
-            text-align: center;
-            font-style: italic;
-            color: gray;
-        }
-        .action-links a {
-            margin: 0 5px;
-            text-decoration: none;
-            color: blue;
-        }
-        .action-links a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
+<c:import url="SidebarAdmin.jsp"/>
+<link rel="stylesheet" href="QuanLyTaiKhoan.css">
+<div class="content">
     <h2>Quản Lý Tài Khoản</h2>
     <% System.out.println("✅ accounts trong JSP: " + request.getAttribute("accounts")); %>
     <a href="ThemTaiKhoan.jsp">➕ Thêm tài khoản</a>
-    <table>
+    <table boder="1">
         <tr>
             <th>ID</th>
             <th>Username</th>
@@ -71,5 +37,9 @@
             </c:otherwise>
         </c:choose>
     </table>
+</div>
 </body>
 </html>
+
+
+
