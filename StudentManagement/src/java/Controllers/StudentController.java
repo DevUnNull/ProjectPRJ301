@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import models.Student;
 import models.Account;
+import models.Semester;
 
 @WebServlet(name = "StudentController", urlPatterns = {"/student"})
 public class StudentController extends HttpServlet {
@@ -71,25 +72,34 @@ public class StudentController extends HttpServlet {
                 }
 
             }
-            //Hiển thị điểm của sinh viên
+            // Hiển thị điểm của sinh viên
             if ("grade".equals(action)) {
                 try {
                     String id = req.getParameter("studentCode");
+                    String semId = req.getParameter("semester");
                     String msg = "";
+
+                    // Kiểm tra nếu không nhập mã sinh viên
                     if (id == null || id.trim().isEmpty()) {
                         msg = "Vui lòng nhập mã sinh viên!";
                         req.setAttribute("msg", msg);
-                    }
-                    List<GradeJoin> existGrade = studentDAO.getAllGrade(id);
-                    if (existGrade != null && !existGrade.isEmpty()) {
-                        req.setAttribute("existGrade", existGrade);
                     } else {
-                        msg = "Mã sinh viên không tồn tại!";
-                        req.setAttribute("msg", msg);
+                        List<GradeJoin> existGrade = studentDAO.getAllGrade(id, semId);
+
+                        if (existGrade != null && !existGrade.isEmpty()) {
+                            req.setAttribute("existGrade", existGrade);
+                        } else {
+                            msg = "Mã sinh viên không tồn tại hoặc không có điểm trong học kỳ này!";
+                            req.setAttribute("msg", msg);
+                        }
                     }
+
+                    // Lấy danh sách học kỳ và gửi về JSP
+                    List<Semester> existSe = studentDAO.getSemesterName();
+                    req.setAttribute("semester", existSe);
                     req.getRequestDispatcher("grade.jsp").forward(req, resp);
                 } catch (Exception e) {
-                }                
+                }
             }
             //Hiển thị thông tin sinh viên 1 lớp
             if ("stu".equals(action)) {

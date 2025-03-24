@@ -9,6 +9,7 @@ import models.Student;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import models.Semester;
 
 public class StudentDAO extends DBContext {
 
@@ -66,14 +67,16 @@ public class StudentDAO extends DBContext {
     }
 
     //Show điểm
-    public List<GradeJoin> getAllGrade(String stuId) {
+    public List<GradeJoin> getAllGrade(String stuId, String seId) {
         List<GradeJoin> list = new ArrayList<>();
         try {
             String sql = "select s.SubjectName, g.Factor1, g.Factor3, g.Factor6, g.TotalGrade from Grades g\n"
                     + "join Subject s on g.SubjectID = s.SubjectID\n"
-                    + "where g.StudentID = ?";
+                    + "join Semester se on g.SemesterID = se.SemesterID\n"
+                    + "where g.StudentID = ? and se.SemesterID = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, stuId);
+            ps.setString(2, seId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String sname = rs.getString("SubjectName");
@@ -88,6 +91,24 @@ public class StudentDAO extends DBContext {
             e.printStackTrace(); // Log lỗi để dễ debug
         }
         return list;
+    }
+    //Lấy ra danh sách kì học
+    public List<Semester> getSemesterName(){
+        List<Semester> semester =  new ArrayList<>();
+        try {
+            String sql = "select s.SemesterID,s.SemesterName from Semester s";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String seId = rs.getString("SemesterID");
+                String seName = rs.getString("SemesterName");
+                Semester se = new Semester(seId, seName);
+                semester.add(se);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return semester;
     }
 
     public List<Student> getAllStudents() throws SQLException {

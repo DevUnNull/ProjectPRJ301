@@ -1,40 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package models;
 
-/**
- *
- * @author Admin
- */
 public class Semester {
-    private String semesterId;
-    private String semesterName;
+    private String seId;
+    private String seName;
 
-    public Semester() {
+    public Semester(String seId, String seName) {
+        this.seId = seId;
+        this.seName = seName;
     }
 
-    public Semester(String semesterId, String semesterName) {
-        this.semesterId = semesterId;
-        this.semesterName = semesterName;
+    public String getSeId() {
+        return seId;
     }
 
-    public String getSemesterId() {
-        return semesterId;
+    public void setSeId(String seId) {
+        this.seId = seId;
     }
 
-    public void setSemesterId(String semesterId) {
-        this.semesterId = semesterId;
+    public String getSeName() {
+        return seName;
     }
 
-    public String getSemesterName() {
-        return semesterName;
-    }
-
-    public void setSemesterName(String semesterName) {
-        this.semesterName = semesterName;
+    public void setSeName(String seName) {
+        this.seName = seName;
     }
     
-
 }
