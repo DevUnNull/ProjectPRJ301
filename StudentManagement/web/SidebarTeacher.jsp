@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -13,8 +14,12 @@
         <div class="sidebar">
             <!-- Thông tin tài khoản -->
             <div class="user-info">
-                <img src="IMAGE/lovepik-confident-workplace-business-male-image-png-image_400441790_wh1200.png" alt="Teacher">
-                <p class="username">Teacher</p>
+                <img src="IMAGE/avatar-trang-1.jpg" alt="Teacher">
+                <p class="username"><c:if test="${not empty account}">
+                    <div class="sidebar-user">
+                        <p><strong>${account.username}</strong></p>
+                    </div>
+                </c:if></p>
             </div>
 
             <ul>

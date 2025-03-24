@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -13,8 +14,14 @@
         <div class="sidebar">
             <!-- Thông tin tài khoản -->
             <div class="user-info">
-                <img src="IMAGE/lovepik-confident-workplace-business-male-image-png-image_400441790_wh1200.png" alt="Student">
-                <p class="username">Student</p>
+                <img src="IMAGE/avatar-trang-1.jpg" alt="Student">
+                <p class="username">
+
+                <c:if test="${not empty account}">
+                    <div class="sidebar-user">
+                        <p><strong>${account.username}</strong></p>
+                    </div>
+                </c:if></p>
             </div>
 
             <ul>
@@ -23,7 +30,7 @@
                 <li><a href="student?action=grade"><i class="fas fa-trophy"></i>Xem Điểm</a></li>                
             </ul>
 
-             
+
             <div class="logout">
                 <a href="Login.jsp"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
             </div>
