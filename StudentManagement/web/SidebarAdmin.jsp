@@ -33,10 +33,10 @@
     </div>
 
     <!-- Khu vực hiển thị nội dung động -->
-    <div id="contentArea">
+<!--    <div id="contentArea">
         <h2>Chào mừng đến với Trang Quản Lý</h2>
         <p>Hãy chọn một chức năng từ menu bên trái.</p>
-    </div>
+    </div>-->
 
     <script>
         function loadContent(page) {

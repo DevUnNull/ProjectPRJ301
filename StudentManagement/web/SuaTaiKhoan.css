@@ -1,0 +1,116 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Thiết lập chung */
+body {
+    background-color: #f4f4f4;
+    display: flex;
+}
+
+/* Phần content (bên phải sidebar) */
+.content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 250px; /* Khoảng cách khi có SidebarAdmin */
+}
+
+/* Tiêu đề */
+h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Form */
+form {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dòng chứa label và input */
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Căn phải */
+    margin-bottom: 15px;
+}
+
+/* Nhãn */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    width: 120px; /* Cố định chiều rộng label */
+    text-align: right;
+    margin-right: 10px;
+}
+
+/* Ô nhập liệu */
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+/* Nút cập nhật */
+input[type="submit"] {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background: #1a252f;
+}
+
+/* Nút vô hiệu hóa */
+input[type="submit"].disable-account {
+    background: #e74c3c;
+    margin-top: 10px;
+    
+}
+
+input[type="submit"].disable-account:hover {
+    background: #c0392b;
+}
+
+/* Thông báo lỗi */
+p {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 12px;
+}
+
+
