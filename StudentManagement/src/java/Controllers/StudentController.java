@@ -52,16 +52,22 @@ public class StudentController extends HttpServlet {
 
                 req.getRequestDispatcher("infoStu.jsp").forward(req, resp);
             }
-            //HIển tị lớp và phòng học của sinh viên
-            if (action == null || "depa".equals(action)) {
+            //Hiển thị lớp và phòng học của sinh viên
+            if (action == null || action.equals("depa")) {
                 try {
                     String idsvStr = req.getParameter("idsv");
-                    List<StuClaDepJoin> exstu = studentDAO.getClass(idsvStr);
 
                     if (idsvStr != null) {
-                        req.setAttribute("existstudent", exstu);
-                    } else {
-                        req.setAttribute("Loi", "Không tồn tại mã sinh viên này");
+                        if (idsvStr.trim().isEmpty()) {
+                            req.setAttribute("Loi", "Vui lòng nhập mã sinh viên!");
+                        } else {
+                            List<StuClaDepJoin> exstu = studentDAO.getClass(idsvStr);
+                            if (exstu != null && !exstu.isEmpty()) {
+                                req.setAttribute("existstudent", exstu);
+                            }else{
+                                req.setAttribute("Loi", "Mã sinh viên không tồn tại!");
+                            }
+                        }
                     }
 
                     req.getRequestDispatcher("class.jsp").forward(req, resp);
@@ -73,24 +79,25 @@ public class StudentController extends HttpServlet {
 
             }
             // Hiển thị điểm của sinh viên
-            if ("grade".equals(action)) {
+            if (action == null || action.equals("grade")) {
                 try {
                     String id = req.getParameter("studentCode");
                     String semId = req.getParameter("semester");
                     String msg = "";
 
                     // Kiểm tra nếu không nhập mã sinh viên
-                    if (id == null || id.trim().isEmpty()) {
-                        msg = "Vui lòng nhập mã sinh viên!";
-                        req.setAttribute("msg", msg);
-                    } else {
-                        List<GradeJoin> existGrade = studentDAO.getAllGrade(id, semId);
-
-                        if (existGrade != null && !existGrade.isEmpty()) {
-                            req.setAttribute("existGrade", existGrade);
-                        } else {
-                            msg = "Mã sinh viên không tồn tại hoặc không có điểm trong học kỳ này!";
+                    if (id != null) {
+                        if (id.trim().isEmpty()) {
+                            msg = "Vui lòng nhập mã sinh viên!";
                             req.setAttribute("msg", msg);
+                        } else {
+                            List<GradeJoin> existGrade = studentDAO.getAllGrade(id, semId);
+                            if (existGrade != null && !existGrade.isEmpty()) {
+                                req.setAttribute("existGrade", existGrade);
+                            } else {
+                                msg = "Mã sinh viên không tồn tại hoặc không có điểm!";
+                                req.setAttribute("msg", msg);
+                            }
                         }
                     }
 
@@ -100,6 +107,7 @@ public class StudentController extends HttpServlet {
                     req.getRequestDispatcher("grade.jsp").forward(req, resp);
                 } catch (Exception e) {
                 }
+
             }
             //Hiển thị thông tin sinh viên 1 lớp
             if ("stu".equals(action)) {
