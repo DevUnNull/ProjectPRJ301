@@ -3,108 +3,154 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import models.Account;
 
 public class AccountDAO {
-    private DBContext db;
 
-    public AccountDAO() {
-        db = new DBContext();
-    }
-
-    // Thêm tài khoản
-    public void addAccount(Account account) throws SQLException {
-        String sql = "INSERT INTO Account (id, username, password, email, role) VALUES (?, ?, ?, ?, ?)";
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = db.getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, account.getId());
-            ps.setString(2, account.getUsername());
-            ps.setString(3, account.getPassword());
-            ps.setString(4, account.getEmail());
-            ps.setInt(5, account.getRole());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new SQLException("Error adding account: " + e.getMessage());
-        } finally {
-            if (ps != null) try { ps.close(); } catch (SQLException e) { e.printStackTrace(); }
-            if (conn != null) db.closeConnection(conn);
-        }
-    }
-
-    // Xóa tài khoản
-    public void deleteAccount(int id) throws SQLException {
-        String sql = "DELETE FROM Account WHERE id = ?";
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = db.getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new SQLException("Error deleting account: " + e.getMessage());
-        } finally {
-            if (ps != null) try { ps.close(); } catch (SQLException e) { e.printStackTrace(); }
-            if (conn != null) db.closeConnection(conn);
-        }
-    }
-
-    // Sửa tài khoản
-    public void updateAccount(Account account) throws SQLException {
-        String sql = "UPDATE Account SET username = ?, password = ?, email = ?, role = ? WHERE id = ?";
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = db.getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, account.getUsername());
-            ps.setString(2, account.getPassword());
-            ps.setString(3, account.getEmail());
-            ps.setInt(4, account.getRole());
-            ps.setInt(5, account.getId());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new SQLException("Error updating account: " + e.getMessage());
-        } finally {
-            if (ps != null) try { ps.close(); } catch (SQLException e) { e.printStackTrace(); }
-            if (conn != null) db.closeConnection(conn);
-        }
-    }
-
-    // Lấy danh sách tài khoản
-    public List<Account> getAllAccounts() throws SQLException {
+    // Lấy tất cả tài khoản
+    public List<Account> getAllAccounts() {
         List<Account> accounts = new ArrayList<>();
+        DBContext db = new DBContext();
         Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        String sql = "SELECT * FROM Account";
+
         try {
             conn = db.getConnection();
-            String sql = "SELECT * FROM Account";
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Account account = new Account(
-                    rs.getInt("id"),
-                    rs.getString("username"),
-                    rs.getString("password"),
-                    rs.getString("email"),
-                    rs.getInt("role")
-                );
-                accounts.add(account);
+            if (conn == null) {
+                System.err.println("⚠️ Lỗi: Không thể kết nối database!");
+                return accounts;
             }
-        } catch (SQLException e) {
-            throw new SQLException("Error retrieving accounts: " + e.getMessage());
+
+            try (PreparedStatement ps = conn.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery()) {
+
+                while (rs.next()) {
+                    accounts.add(new Account(
+                            rs.getInt("id"),
+                            rs.getString("username"),
+                            rs.getString("password"),
+                            rs.getString("email"),
+                            rs.getInt("role")
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Lỗi khi lấy danh sách tài khoản: " + e.getMessage());
+            e.printStackTrace();
         } finally {
-            if (rs != null) try { rs.close(); } catch (SQLException e) { e.printStackTrace(); }
-            if (ps != null) try { ps.close(); } catch (SQLException e) { e.printStackTrace(); }
-            if (conn != null) db.closeConnection(conn);
+            if (conn != null) {
+                db.closeConnection(conn);
+            }
         }
         return accounts;
     }
+
+    // Lấy tài khoản theo ID
+    public Account getAccountById(int id) {
+        DBContext db = new DBContext();
+        Connection conn = null;
+        Account acc = null;
+        String sql = "SELECT * FROM Account WHERE id = ?";
+
+        try {
+            conn = db.getConnection();
+            if (conn == null) {
+                System.err.println("⚠️ Lỗi: Không thể kết nối database!");
+                return null;
+            }
+
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        acc = new Account(
+                                rs.getInt("id"),
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                rs.getString("email"),
+                                rs.getInt("role")
+                        );
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Lỗi khi lấy tài khoản ID=" + id + ": " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                db.closeConnection(conn);
+            }
+        }
+        return acc;
+    }
+
+    // Cập nhật role của tài khoản
+    public boolean updateAccountRole(int id, int role) {
+        DBContext db = new DBContext();
+        Connection conn = null;
+        String sql = "UPDATE Account SET role = ? WHERE id = ?";
+        boolean isUpdated = false;
+
+        try {
+            conn = db.getConnection();
+            if (conn == null) {
+                System.err.println("⚠️ Lỗi: Không thể kết nối database!");
+                return false;
+            }
+
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, role);
+                ps.setInt(2, id);
+                isUpdated = ps.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+            System.err.println("Lỗi khi cập nhật role cho tài khoản ID=" + id + ": " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                db.closeConnection(conn);
+            }
+        }
+        return isUpdated;
+    }
+
+    // Đặt role về 0
+    public boolean setRoleToZero(int id) {
+        return updateAccountRole(id, 0);
+    }
+    
+    // Cập nhật thông tin tài khoản (username, email, role)
+public boolean updateAccountDetails(int id, String username, String email, int role) {
+    DBContext db = new DBContext();
+    Connection conn = null;
+    String sql = "UPDATE Account SET username = ?, email = ?, role = ? WHERE id = ?";
+    boolean isUpdated = false;
+
+    try {
+        conn = db.getConnection();
+        if (conn == null) {
+            System.err.println("⚠️ Lỗi: Không thể kết nối database!");
+            return false;
+        }
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ps.setString(2, email);
+            ps.setInt(3, role);
+            ps.setInt(4, id);
+            isUpdated = ps.executeUpdate() > 0;
+        }
+    } catch (Exception e) {
+        System.err.println("Lỗi khi cập nhật tài khoản ID=" + id + ": " + e.getMessage());
+        e.printStackTrace();
+    } finally {
+        if (conn != null) {
+            db.closeConnection(conn);
+        }
+    }
+    return isUpdated;
+}
+
 }
