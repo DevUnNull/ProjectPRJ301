@@ -2,9 +2,15 @@
 <%@ page import="java.util.List" %>
 <%@ page import="models.Account" %>
 <%@ page import="dal.AccountDAO" %>
-<!DOCTYPE html>
-<html>
-<head>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:import url="SidebarAdmin.jsp"/>
+<link rel="stylesheet" href="DanhSachTaiKhoan.css">
+
+<div class="content">
+
+    <!DOCTYPE html>
+
+
     <meta charset="UTF-8">
     <title>Danh Sách Tài Khoản</title>
     <style>
@@ -21,36 +27,41 @@
             background-color: #f2f2f2;
         }
     </style>
-</head>
-<body>
 
-<h2>Danh Sách Tài Khoản</h2>
 
-<%
-    AccountDAO accountDAO = new AccountDAO();
-    List<Account> accounts = accountDAO.getAllAccounts();
-%>
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Role</th>
-    </tr>
+    <h2>Danh Sách Tài Khoản</h2>
+
     <%
-        for (Account acc : accounts) {
+        AccountDAO accountDAO = new AccountDAO();
+        List<Account> accounts = accountDAO.getAllAccounts();
     %>
-    <tr>
-        <td><%= acc.getId() %></td>
-        <td><%= acc.getUsername() %></td>
-        <td><%= acc.getEmail() %></td>
-        <td><%= acc.getRole() %></td>
-    </tr>
-    <%
-        }
-    %>
-</table>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        <%
+            for (Account acc : accounts) {
+        %>
+        <tr>
+            <td><%= acc.getId() %></td>
+            <td><%= acc.getUsername() %></td>
+            <td><%= acc.getEmail() %></td>
+            <td><%= acc.getRole() %></td>
+        </tr>
+        <%
+            }
+        %>
+    </table>
+<a href="http://localhost:9999/StudentManagement/AccountController" class="btn-back">⬅ Quay lại</a>
+
+
+
+</div>
 
 </body>
 </html>

@@ -1,0 +1,125 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Cấu trúc trang */
+body {
+    background-color: #f4f4f4;
+    display: flex;
+}
+
+/* Phần content */
+.content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 250px; /* Khoảng cách với Sidebar */
+}
+
+/* Tiêu đề trang */
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Nút "Thêm tài khoản" */
+.btn-add {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-add:hover {
+    background-color: #218838;
+}
+
+/* Bảng dữ liệu */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+}
+
+/* Header bảng */
+th {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+/* Dữ liệu bảng */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+/* Màu nền xen kẽ */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hiệu ứng hover */
+tr:hover {
+    background-color: #e3e3e3;
+}
+
+/* Nút chỉnh sửa */
+.btn-edit {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ff9800;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background-color: #e68900;
+}
+
+/* Biểu tượng trong nút */
+.btn-edit i {
+    margin-right: 5px;
+}
+
+/* Nút "Quay lại" */
+.btn-back {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+}
+
