@@ -2,17 +2,25 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="SidebarStudent.jsp"/>
 <link rel="stylesheet" href="grade.css">
-        <div class="content">
-             <form action="student">
-                 <div class="table-1">
-                 <table>
+<div class="content">
+    <form action="student">
+        <div class="table-1">
+            <table>
                 <tbody>
                     <tr class="Search">
                         <td>Enter the student code:</td>
                         <td><input type="text" name="studentCode"/></td>
                     </tr>
                     <tr>
-                  <input type="hidden" name="action" value="grade">
+                        <td>
+                            Select semester:
+                            <select name="semester" required>
+                                <c:forEach var="sem" items="${semester}">
+                                    <option value="${sem.getSeId()}">${sem.getSeName()}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td><input type="hidden" name="action" value="grade"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="OK" /></td>
@@ -25,10 +33,10 @@
                     </tr>
                 </tbody>
             </table>
-                     </div>
-        </form>
-        <c:if test="${not empty requestScope.existGrade}">
-            <div class="table-2">
+        </div>
+    </form>
+    <c:if test="${not empty requestScope.existGrade}">
+        <div class="table-2">
             <table border="1">
                 <thead class="Table-Header">
                     <tr>
@@ -53,9 +61,9 @@
 
                 </tbody>
             </table>
-                </div>
-        </c:if>
         </div>
+    </c:if>
+</div>
 
-    </body>
+</body>
 </html>
