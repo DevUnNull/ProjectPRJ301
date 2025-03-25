@@ -45,7 +45,8 @@
             <!--            <div class="register-link">
                             <p>Don't have an account? <a href="http://localhost:9999/PROJECT/register">Register</a></p>
                         </div>-->
-            ${mes}
+            <span style="color: red">${mes}</span>
+
         </form>
     </div>
 </body>
