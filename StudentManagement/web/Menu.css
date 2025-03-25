@@ -19,7 +19,9 @@ body {
     overflow: auto;
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s;
+    box-sizing: border-box; /* Đảm bảo tổng chiều rộng không vượt quá 250px */
 }
+
 
 .sidebar h2 {
     text-align: center;
@@ -62,7 +64,7 @@ body {
 }
 
 .content {
-    margin-left: 270px;
+    margin-left: 250px;
     padding: 30px;
     flex: 1;
 }
