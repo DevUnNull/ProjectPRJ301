@@ -12,14 +12,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="Login.css">
+    <div class="logo-container">
         <a href="http://localhost:9999/StudentManagement" target="_blank">
             <img src="IMAGE/fptulogo-removebg-preview.png" alt="FPT Logo" class="logo"/>
         </a>
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    </head>
-    <body>
-        <div class="wrapper">
-            <form action="login" method="post">
+    </div>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="login" method="post">
             <h1>Login</h1>
 
             <div class="input-box">
@@ -39,12 +42,12 @@
 
             <button type="submit" class="btn">Đăng Nhập</button>
 
-<!--            <div class="register-link">
-                <p>Don't have an account? <a href="http://localhost:9999/PROJECT/register">Register</a></p>
-            </div>-->
+            <!--            <div class="register-link">
+                            <p>Don't have an account? <a href="http://localhost:9999/PROJECT/register">Register</a></p>
+                        </div>-->
             ${mes}
         </form>
     </div>
-    </body>
+</body>
 </html>
 
