@@ -170,3 +170,15 @@ body {
     background: #c0392b;
     transform: scale(1.05);
 }
+
+.logo {
+    width: 90%;  /* Điều chỉnh kích thước */
+    max-width: 200px;
+    display: block;
+    margin: 40px auto 20px; /* Hạ thấp logo xuống */
+    padding: 50px; /* Tạo khoảng cách với các phần tử xung quanh */
+    background: rgba(255, 255, 255, 0.1); /* Thêm nền nhẹ */
+    border-radius: 10px; /* Bo tròn viền cho đẹp */
+}
+
+

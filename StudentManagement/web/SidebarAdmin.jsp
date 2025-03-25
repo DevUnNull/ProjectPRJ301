@@ -35,6 +35,8 @@
             <div class="logout">
                 <a href="Login.jsp"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
             </div>
+            <img src="IMAGE/fptulogo-removebg-preview.png" alt="FPT Logo" class="logo" style="width: 80%; max-width: 200px;">
+
         </div>
 
         <!-- Khu vực hiển thị nội dung động -->
