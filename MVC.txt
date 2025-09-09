@@ -1,3 +1,5 @@
+add product
+
 AcademicSystem
 ├── src
 │   ├── java
